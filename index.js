@@ -1,22 +1,28 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-// Import Route
-const authRoute = require('./routes/auth');
+const mongoose = require('mongoose');
 
+//import routes
+const authRoute = require('./routes/auth');
+const postRoute = require('./routes/post');
 dotenv.config();
 
-// Connect to DB
-mongoose.connect(process.env.DB_CONNECT,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => console.log('Connected to DB')
-);
+//connect to DB
+process.env.DB_CONNECT, { useNewUrIParser: true, useUnifiedTopology: true },
+    mongoose.connect(process.env.DB_CONNECT, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    },
+        () => console.log('connect to DB')
+    );
 
-// Middleware
+//Middleare
 app.use(express.json());
 
-// Route Middleware
-app.use('/api/user', authRoute);
+//routes middleare          
 
-app.listen(3000, () => console.log('Server is running.'));
+app.use('/api/user', authRoute); 
+app.use('/api/posts', postRoute);
+
+app.listen(3000, () => console.log('server up and running'));
