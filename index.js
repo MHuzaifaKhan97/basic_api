@@ -9,7 +9,7 @@ const postRoute = require('./routes/post');
 dotenv.config();
 
 //connect to DB
-process.env.DB_CONNECT, { useNewUrIParser: true, useUnifiedTopology: true },
+mongoose.connect(process.env.DB_CONNECT, { useNewUrIParser: true, useUnifiedTopology: true },
     mongoose.connect(process.env.DB_CONNECT, {
         useNewUrlParser: true,
         useUnifiedTopology: true
