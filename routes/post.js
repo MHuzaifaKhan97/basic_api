@@ -17,6 +17,11 @@ router.get('/', verify, async (req, res) => {
     res.send(posts);
 });
 
+router.get('/:id', verify, async (req, res) => {
+    const posts = await Posts.findById({ _id:req.params.id });
+    res.send(posts);
+});
+
 router.post('/addpost', verify, async (req, res) => {
     console.log("added post");
     const post = new Posts({
